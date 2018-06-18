@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
-    getUsers,
+    getUsersData,
     getInitialData
 } from '../utils/api'
 
@@ -24,7 +24,7 @@ class Login extends Component {
 
     render() {
         let currentLogin = ""
-        let users = getUsers().then((users) => {
+        let users = getUsersData().then((users) => {
             return users
         })
         console.log('user1: ', users)

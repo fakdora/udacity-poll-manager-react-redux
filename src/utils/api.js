@@ -1,8 +1,6 @@
-import {
-    _getUsers
-} from './_DATA'
+import { _getUsers, _getQuestions } from './_DATA'
 
-export function getUsers() {
+export function getUsersData() {
     // return Promise.all(_getUsers)
     // return _getUsers().then(([users]) => ({
     //     users
@@ -15,8 +13,10 @@ export function getUsers() {
 
 export function getInitialData() {
     return Promise.all([
-        _getUsers()
-    ]).then(([users]) => ({
-        users
+        _getUsers(),
+        _getQuestions(),
+    ]).then(([users, polls]) => ({
+        users, 
+        polls,
     }))
 }
