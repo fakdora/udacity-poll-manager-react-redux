@@ -5,11 +5,12 @@ import { connect } from 'react-redux'
 
 import HomePage from './HomePage'
 import Nav from './Nav'
-import PollDetail from './PollDetail'
 import NewPoll from './NewPoll'
+import PollDetailPage from './PollDetailPage'
 import Leaderboard from './LeaderBoard'
 import { handleInitialData } from '../actions/shared'
 import { getInitialData } from '../utils/api'
+
 
 class App extends Component {
   componentDidMount() {
@@ -20,14 +21,15 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
-        {/*<LoadingBar />*/}
+        
         <div className="container">
+            <LoadingBar />
           <Nav />
           {this.props.loading === true 
             ? null
             : <div>
                 <Route path='/' exact component={HomePage} />
-                <Route path='/questions/:id' component={PollDetail} />
+                <Route path='/questions/:id' component={PollDetailPage} />
                 <Route path='/new' component={NewPoll} />
                 <Route path='/leaderboard' component={Leaderboard} />
               </div>
