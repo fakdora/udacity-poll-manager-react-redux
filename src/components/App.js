@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import LoadingBar from 'react-redux-loading'
 import { connect } from 'react-redux'
 
@@ -8,8 +8,9 @@ import Nav from './Nav'
 import NewPoll from './NewPoll'
 import PollDetailPage from './PollDetailPage'
 import Leaderboard from './LeaderBoard'
+import PageNotFound from './404'
 import { handleInitialData } from '../actions/shared'
-import { getInitialData } from '../utils/api'
+// import { getInitialData } from '../utils/api'
 
 
 class App extends Component {
@@ -21,17 +22,20 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
-        
-        <div className="container">
-            <LoadingBar />
-          <Nav />
+          <LoadingBar />
+          <div className="container">
+            
           {this.props.loading === true 
             ? null
             : <div>
+                <Nav />
+                <Switch>
                 <Route path='/' exact component={HomePage} />
                 <Route path='/questions/:id' component={PollDetailPage} />
-                <Route path='/new' component={NewPoll} />
-                <Route path='/leaderboard' component={Leaderboard} />
+                <Route path='/add' exact component={NewPoll} />
+                <Route path='/leaderboard' exact component={Leaderboard} />
+                <Route component={PageNotFound} />
+                </Switch>
               </div>
           }
         </div>

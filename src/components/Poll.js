@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatPoll, formatDate } from '../utils/helpers'
+import { Link } from 'react-router-dom'
 
 class Poll extends Component {
     render () {
@@ -15,7 +16,8 @@ class Poll extends Component {
         } = poll
 
         return (
-            <div className='poll'>
+         
+            <Link to={`/questions/${id}`}className='poll'>
                 <div className='poll-info'>
                   <span>{name}</span>
                   <div>{formatDate(timestamp)}</div>
@@ -28,7 +30,8 @@ class Poll extends Component {
                     alt={`Avatar of ${name}`}
                     className='avatar'
                 />
-            </div>
+            
+          </Link>
             
         )
     }

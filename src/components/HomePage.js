@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Login from './Login'
 import { connect } from 'react-redux'
 import Poll from './Poll'
 
@@ -9,12 +8,6 @@ class HomePage extends Component {
         // console.log('this.props: ', this.props)
         return (
             <div>
-            <header className="container-header">
-                <h1 className="container-title">
-                    Would you rather?
-                </h1>
-            </header>
-            <div>
                 <h3 className='center'>Polls</h3>
                 <ul className='dashboard-list'>
                     {this.props.pollIds.map((id) => (
@@ -23,7 +16,6 @@ class HomePage extends Component {
                         </li>
                     ))}
                 </ul>
-            </div>
             </div>
         )
     }

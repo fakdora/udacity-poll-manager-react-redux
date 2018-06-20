@@ -1,4 +1,7 @@
-import { _getUsers, _getQuestions } from './_DATA'
+import { 
+  _getUsers, _getQuestions, 
+  _saveQuestionAnswer, _saveQuestion 
+} from './_DATA'
 
 export function getUsersData() {
     // return Promise.all(_getUsers)
@@ -19,4 +22,12 @@ export function getInitialData() {
         users, 
         polls,
     }))
+}
+
+export function saveAnswer(info) {
+  return _saveQuestionAnswer(info)
+}
+
+export function saveQuestion(info) {
+  return _saveQuestion(info)
 }
