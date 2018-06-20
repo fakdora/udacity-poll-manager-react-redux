@@ -39,7 +39,7 @@ class Poll extends Component {
 
 function mapStateToProps ({authedUser, users, polls}, {id}) {
     const poll = polls[id]
-
+    
     return {
         authedUser,
         poll: formatPoll(poll, users[poll.author], authedUser)
