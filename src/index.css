@@ -33,6 +33,46 @@ a {
   text-decoration: none;
 }
 
+.goback-btn {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  background-image: none;
+  border-color: #007bff;
+  border: 1px solid rgba(0, 0, 0, .29);
+  text-transform: uppercase;
+  margin: 35px auto;
+  padding: 10px;
+    width: 100px;
+    position: relative;
+    font-size: 16px;
+}
+.goback-btn a {
+  color:white
+}
+.goback-btn:hover {
+  border-color: rgba(0, 0, 0, .5);
+  text-decoration: none;
+}
+
+
+.logout-btn:hover {
+  border-color: rgba(0, 0, 0, .5);
+  text-decoration: none;
+}
+
+.logout-btn {
+  text-transform: uppercase;
+  margin: 0 10px;
+  padding: 2px;
+  border: 1px solid rgba(0, 0, 0, .29);
+  cursor: pointer;
+  background: #fff;
+  font-size: 14px;
+  width: 30p;
+  position: relative;
+}
+
 .btn:focus {
   outline: 0;
   font-weight: 700;
@@ -100,6 +140,34 @@ li {
   cursor: pointer;
 }
 
+.poll-info {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hacky but less typing in the video */
+
+.poll-info>div>span:first-child {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.poll-info>div>span:nth-child(2) {
+  color: #969696;
+  font-size: 16px;
+}
+
+.poll-info>div>div {
+  color: #969696;
+  font-size: 15px;
+}
+
+.poll-info>div>p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
 .new-poll {
   width: 100%;
   max-width: 590px;
@@ -149,4 +217,43 @@ li {
 .chosen-ans {
   color: #00cc00;
   border: 2px solid #00cc00;
+}
+
+.styled-select {
+  height: 29px;
+  overflow: hidden;
+  width: 350px;
+  margin: 100px auto;
+}
+
+.styled-select select {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  height: 29px;
+  padding: 5px;
+  /* If you add too much padding here, the options won't show in IE */
+  width: 350px;
+}
+
+.styled-select.slate {
+  
+  height: 34px;
+  width: 350px;
+}
+
+.styled-select.slate select {
+  border: 1px solid #ccc;
+  font-size: 16px;
+  height: 34px;
+  width: 268px;
+}
+
+.poll-answer-form {
+  width:100%;
+  margin:20px 0;
+}
+
+.go-back {
+  width: 100px;
 }

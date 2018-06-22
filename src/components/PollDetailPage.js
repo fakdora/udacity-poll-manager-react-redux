@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import { formatPoll } from '../utils/helpers'
 import { handleAnswerPoll } from '../actions/polls'
@@ -41,7 +42,8 @@ class PollDetailPage extends Component {
       return <Redirect to="/404" />
     }
     const unansweredForm = (
-      <form onSubmit={this.handleSubmit}>
+      <div className="poll-answer-form">
+        <form onSubmit={this.handleSubmit}>
         <input type="radio"
           name="wouldyou"
           value="optionOne" 
@@ -60,8 +62,9 @@ class PollDetailPage extends Component {
            />
         {optionTwo.text}
         <br />
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" className="btn" />
       </form>
+      </div>
     )
 
     const chosenAnswer = author['answers'][id]
@@ -71,6 +74,9 @@ class PollDetailPage extends Component {
 
     const result = (
       <div>
+        <div className="goback-btn">
+          <Link to="/">Return to Homepage</Link>
+        </div>
         <div className=
         {(chosenAnswer === "optionOne") 
           ? "chosen-ans btn"
@@ -98,15 +104,14 @@ class PollDetailPage extends Component {
     return (
       <div>
       <h2>Would you rather? </h2>
-      <div>asked by: 
-      <img src={avatar} alt={`Avatar of ${name}`}
-            className='avatar' />
-      {name}
-      </div>
+      <div>asked by:</div> 
+      <div><img src={avatar} alt={`Avatar of ${name}`}
+            className='avatar' /></div>
+      <div>{name}</div>
         {(answered)
           ? 
           result
-          : unansweredForm}
+          : <div className="poll">{unansweredForm}</div>}
       </div>
     )
   }

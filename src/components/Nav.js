@@ -9,11 +9,13 @@ class Nav extends Component {
   handleLogout = (e) => {
     e.preventDefault()
     const { dispatch } = this.props
-    console.log('logout user ')
     dispatch(logoutUser())
   }
 
   render() {
+
+    const { users, authedUser } = this.props
+    const userDetail = users[authedUser]
     return (
       <nav className='nav'>
         <ul>
@@ -36,11 +38,11 @@ class Nav extends Component {
 
         <ul className='user-info'>
           <li>
-          Welcome {this.props.authedUser}
+            Welcome {userDetail.name}
           <button 
-            className=""
+              className="logout-btn"
             onClick={this.handleLogout}
-            > (Logout)</button>
+            > Logout</button>
           </li>
         </ul>
       </nav>
@@ -48,9 +50,10 @@ class Nav extends Component {
   }
 }
 
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ authedUser, users }) {
   return {
     authedUser,
+    users
   }
 }
 

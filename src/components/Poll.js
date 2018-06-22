@@ -12,19 +12,19 @@ class Poll extends Component {
     } = poll
 
     return (
-      <Link to={`/questions/${id}`}className='poll'>
-          <div className='poll-info'>
-            <span>{name}</span>
-            <div>{formatDate(timestamp)}</div>
-            <div>{optionOne.text}</div>
-            <div>{optionTwo.text}</div>
-          </div>
-          
-          <img 
-              src={avatar}
-              alt={`Avatar of ${name}`}
-              className='avatar'
-          />
+      <Link to={`/questions/${id}`} className='poll'>
+        <img
+          src={avatar}
+          alt={`Avatar of ${name}`}
+          className='avatar'
+        />
+        <div className='poll-info'>
+          <span>{name}</span>
+          <div>{formatDate(timestamp)}</div>
+          <p>{optionOne.text}</p>
+          <div>OR</div>
+          <p>{optionTwo.text}</p>
+        </div>
       </Link>  
     )
   }

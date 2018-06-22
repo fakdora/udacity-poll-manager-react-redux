@@ -17,20 +17,19 @@ class Login extends Component {
     const { users } = this.props
     
     return (
-        <div className="book-shelf-changer">
-        
-          <select
+      <div className="styled-select slate">
+        <select 
             value="login"
             onChange={this.handleLoginNameSelect}
           >
-          <option value="login" disabled>Please choose a name to login:</option>
+          <option value="login" disabled>Please choose a name to login</option>
           {
             Object.keys(users).map(((uid) => (
               <option key={uid} value={uid}>{users[uid].name}</option>
             )))
           }
           
-            </select>
+          </select>
         </div>
     )
   }
