@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 
 import { formatPoll, formatDate } from '../utils/helpers'
+import { handleAnswerPoll } from '../actions/polls'
 
 class PollDetailPage extends Component {
   state = {
@@ -11,15 +12,19 @@ class PollDetailPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-
-    alert(this.state.vote)
+    const { dispatch, author } = this.props
+    
+    const info = { 
+      qid: this.props.poll.id, 
+      answer: this.state.vote 
+    }
+    
+    dispatch(handleAnswerPoll(info))
   }
 
   handleChange = (e) => {
-    
-    console.log('e', e)
     const currentVote = e.target.value
-    console.log('currentVote: ', currentVote)
+    
     this.setState(() => ({
       vote: currentVote
     }))
@@ -103,48 +108,18 @@ class PollDetailPage extends Component {
           result
           : unansweredForm}
       </div>
-
     )
   }
 }
 
-// "8xf0y6ziyjabvozdd253nd": {
-//   id: '8xf0y6ziyjabvozdd253nd',
-//   author: 'sarahedo',
-//   timestamp: 1467166872634,
-//   optionOne: {
-//     votes: ['sarahedo'],
-//       text: 'have horrible short term memory',
-//     },
-//   optionTwo: {
-//     votes: [],
-//       text: 'have horrible long term memory'
-//   }
-// },
-
-// sarahedo: {
-//   id: 'sarahedo',
-//   name: 'Sarah Edo',
-//   avatarURL: "https://pbs.twimg.com/profile_images/675531002043699200/x7kAHIgw_400x400.jpg",
-//   answers: {
-//     "8xf0y6ziyjabvozdd253nd": 'optionOne',
-//     "6ni6ok3ym7mf1p33lnez": 'optionOne',
-//     "am8ehyc8byjqgar0jgpub9": 'optionTwo',
-//     "loxhs1bqm25b708cmbf3g": 'optionTwo'
-//   },
-//   questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
-// },
-
 function mapStateToProps({ authedUser, users, polls }, props) {
   const pollId = props.match.params.id
   const poll = polls[pollId]
-  console.log('users: ', users)
-
+  
   let author = null 
   if (poll) {
     author = users[poll['author']]
   }
-  console.log('author:, ', author)
 
   const answered = Object.keys(users[authedUser].answers)
                     .includes(pollId)
@@ -152,11 +127,10 @@ function mapStateToProps({ authedUser, users, polls }, props) {
 
   return {
     authedUser,
-    authedUserDetail: users[authedUser],
-    poll: formatPoll(poll, users[poll.author], authedUser),
+    // authedUserDetail: users[authedUser],
+    poll: formatPoll(poll, author, authedUser),
     author,
     answered,
-    
   }
 }
 

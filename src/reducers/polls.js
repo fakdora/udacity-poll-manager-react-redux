@@ -15,10 +15,16 @@ export default function polls(state={}, action) {
           
           return {
             ...state,
-            [action.id]: {
-              ...state[action.id],
-              [action.answer]: state[action.id].answer.votes.concat(action.authedUser),
-              otherOption: state[action.id].otherOption.votes.filter((uid) => uid !== action.authedUser)
+            [action.qid]: {
+              ...state[action.qid],
+              [action.answer]: {
+                ...state[action.qid][action.answer],
+                'votes': state[action.qid][action.answer].votes.concat(action.authedUser),
+              },
+              [otherOption]: {
+                ...state[action.qid][otherOption],
+                'votes': state[action.qid][otherOption].votes.filter((uid) => uid !== action.authedUser)
+              }
             }
           }
         case ADD_POLL:
@@ -27,24 +33,7 @@ export default function polls(state={}, action) {
             ...state,
             [action.poll.id]: action.poll,
           }
-          
-
         default:
             return state
     }
 }
-
-
-// "8xf0y6ziyjabvozdd253nd": {
-//   id: '8xf0y6ziyjabvozdd253nd',
-//     author: 'sarahedo',
-//     timestamp: 1467166872634,
-//     optionOne: {
-//       votes: ['sarahedo'],
-//       text: 'have horrible short term memory',
-//     },
-//     optionTwo: {
-//       votes: [],
-//       text: 'have horrible long term memory'
-//   }
-// },

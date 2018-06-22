@@ -8,7 +8,7 @@ const AUTHED_ID = "sarahedo"
 
 export function handleInitialData() {
   return (dispatch) => {
-    dispatch(showLoading)
+    dispatch(showLoading())
     return getInitialData()
       .then(({ users, polls }) => {
         dispatch(receiveUsers(users))

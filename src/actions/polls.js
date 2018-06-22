@@ -1,5 +1,6 @@
 import { saveAnswer, saveQuestion } from '../utils/api'
 import { showLoading, hideLoading } from 'react-redux-loading'
+import { answerPollUser, addUserNewPoll } from './users'
 
 export const RECEIVE_POLLS = "RECEIVE_POLLS"
 export const ANSWER_POLL = "ANSWER_POLL"
@@ -29,45 +30,40 @@ export function handleAddPoll(optionOne, optionTwo) {
       optionTwoText: optionTwo, 
       author: authedUser
     })
-      .then((poll) => dispatch(addPoll(poll))) 
+      .then((poll) => {
+        dispatch(addPoll(poll))
+        dispatch(addUserNewPoll({ qid: poll.id, authedUser }))
+      }) 
       .then(() => dispatch(hideLoading()))
 
   }
 }
 
-// "8xf0y6ziyjabvozdd253nd": {
-//   id: '8xf0y6ziyjabvozdd253nd',
-//   author: 'sarahedo',
-//   timestamp: 1467166872634,
-//   optionOne: {
-//     votes: ['sarahedo'],
-//       text: 'have horrible short term memory',
-//     },
-//   optionTwo: {
-//     votes: [],
-//       text: 'have horrible long term memory'
-//   }
-// }
-
-
-function answerPoll ({id, authedUser, answer}) {
+function answerPoll({ qid, authedUser, answer}) {
   return {
     type: ANSWER_POLL,
-    id,
+    qid,
     authedUser,
     answer
   }
 }
 
 export function handleAnswerPoll(info) {
-  return (dispatch) => {
-    dispatch(answerPoll(info))
-
-    return saveAnswer(info)
+  return (dispatch, getState) => {
+    dispatch(showLoading())
+    const { authedUser } = getState()
+    
+    info['authedUser'] = authedUser
+    console.log('----- ', info)
+    return (saveAnswer(info)
       .catch((e) => {
         console.warn('Error in handleAnswerPoll: ', e)
-        dispatch(answerPoll(info))
         alert('There was an error answering the poll. Try again.')
+      }))
+      .then(() => {
+        dispatch(answerPoll(info))
+        dispatch(answerPollUser(info))
       })
+      .then(dispatch(hideLoading()))
   }
 }

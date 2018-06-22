@@ -20,16 +20,19 @@ class Leaderboard extends Component {
                 alt={users[id].name} 
                 className="avatar"
               />
-                <span>{users[id].name} </span>
-                Questiosn Asked
-                {users[id].questions.length}
-                
-                <span>Questions Answered</span>
-                {Object.keys(users[id].answers).length}
+              <div>
+                <div>{users[id].name}</div>
 
-                Total: 
+                Questiosn Asked:   
+                {users[id].questions.length}
+                <br />
+                <span>Questions Answered: </span>
+                {Object.keys(users[id].answers).length}
+                <br />
+                <label>Total:   </label>
                 {Object.keys(users[id].answers).length + 
                 users[id].questions.length}
+              </div>
             </div>
             </li>
           ))}

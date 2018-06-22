@@ -1,4 +1,6 @@
-import { RECEIVE_USERS } from '../actions/users'
+import { 
+  RECEIVE_USERS, ANSWER_POLL_FOR_USER, ADD_USER_NEW_POLL 
+} from '../actions/users'
 
 export default function users (state = {}, action) {
     switch(action.type) {
@@ -7,6 +9,31 @@ export default function users (state = {}, action) {
                 ...state,
                 ...action.users
             }
+      case ANSWER_POLL_FOR_USER:
+        console.log('here ANSWER_POLL_FOR_USER')
+        console.log('[action.qid]: action.answer: ', [action.qid]: action.answer)
+        console.log('action.qid: ', action.qid)
+            return {
+                ...state,
+                [action.authedUser]: {
+                  ...state[action.authedUser],
+                  answers: {
+                    ...state[action.authedUser].answers,
+                    [action.qid]: action.answer
+                  }
+                }
+              }
+      case ADD_USER_NEW_POLL:
+        return {
+          ...state,
+          [action.authedUser]: {
+            ...state[action.authedUser],
+            questions: 
+              state[action.authedUser].questions.concat(action.qid),
+            
+          }
+        }
+       
         default:
             return state
     }
