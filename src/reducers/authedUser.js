@@ -1,10 +1,13 @@
-import { SET_AUTHED_USER } from '../actions/authedUser'
+import { SET_AUTHED_USER, LOGOUT_USER } from '../actions/authedUser'
 
 export default function authedUser (state=null, action) {
-    switch (action.type) {
-        case SET_AUTHED_USER:
-            return action.id
-        default:
-            return state
-    }
+  switch (action.type) {
+    case SET_AUTHED_USER:
+      return action.id
+    case LOGOUT_USER:
+      console.log('LOGOUT_USER')
+      return null
+    default:
+      return state
+  }
 }

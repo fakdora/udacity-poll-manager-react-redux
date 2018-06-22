@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 
 class Poll extends Component {
     render () {
-        console.log('poll.js this.props ', this.props)
         const { poll } = this.props
         if (poll == null) {
             return <p>This poll does not exist</p>

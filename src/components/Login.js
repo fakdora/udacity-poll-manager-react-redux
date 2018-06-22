@@ -1,56 +1,58 @@
 import React, { Component } from 'react'
-import {
-    getUsersData,
-    getInitialData
-} from '../utils/api'
+import { connect } from 'react-redux'
+
+import { setAuthedUser } from '../actions/authedUser'
 
 class Login extends Component {
-    state = {
-        users: []
-    }
 
     handleLoginNameSelect = (e) => {
-
-    }
-    // export function _getUsers() {
-    //     return new Promise((res, rej) => {
-    //         setTimeout(() => res({ ...users
-    //         }), 1000)
-    //     })
-    // }
-    fetchAllUserNames = () => {
-   
+      e.preventDefault()
+      const { dispatch } = this.props
+      const uid = e.target.value
+      dispatch(setAuthedUser(uid))
     }
 
     render() {
-        let currentLogin = ""
-        let users = getUsersData().then((users) => {
-            return users
-        })
-        console.log('user1: ', users)
-        let init = getInitialData()
-        console.log('init: ', getInitialData())
+        
+        const { users } = this.props
+        
         return (
             <div className="book-shelf-changer">
             
-                        <select 
-                            value={currentLogin} 
-                            onChange = {currentLogin =
-                                (e) => this.props.handleLoginNameSelect(e)
-                            }
-                        >
-                            <option value="moveto" disabled>Move to...</option>
-                            <option value="currentlyReading">Currently Reading</option>
-                            <option value="wantToRead">Want to Read</option>
-                            <option value="read">Read</option>
-                            <option value="none">None</option>
-                        </select>
+              <select
+                onChange={this.handleLoginNameSelect}
+              >
+              <option value="login" selected disabled>Please choose a name to login:</option>
+              {
+              Object.keys(users).map(((uid) => (
+                  <option value={uid}>{users[uid].name}</option>
+                )))
+              }
+              
+                </select>
+            
+                <select 
+                    onChange = {this.handleLoginNameSelect}
+                >
+
+                    <option value="moveto" disabled>Move to...</option>
+                    <option value="currentlyReading">Currently Reading</option>
+                    <option value="wantToRead">Want to Read</option>
+                    <option value="read">Read</option>
+                    <option value="none">None</option>
+                </select>
             </div>
 
         )
     }
 }
 
-export default Login
+function mapStateToProps({ users }) {
+  return {
+    users
+  }
+}
+
+export default connect(mapStateToProps)(Login)
 
 

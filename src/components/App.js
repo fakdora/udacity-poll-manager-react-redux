@@ -4,6 +4,7 @@ import LoadingBar from 'react-redux-loading'
 import { connect } from 'react-redux'
 
 import HomePage from './HomePage'
+import Login from './Login'
 import Nav from './Nav'
 import NewPoll from './NewPoll'
 import PollDetailPage from './PollDetailPage'
@@ -11,7 +12,6 @@ import Leaderboard from './LeaderBoard'
 import PageNotFound from './404'
 import { handleInitialData } from '../actions/shared'
 // import { getInitialData } from '../utils/api'
-
 
 class App extends Component {
   componentDidMount() {
@@ -24,15 +24,16 @@ class App extends Component {
         <Fragment>
           <LoadingBar />
           <div className="container">
-            
-          {this.props.loading === true 
-            ? null
-            : <div>
+          {
+            this.props.authedUser === null
+              ? <Login />
+              :
+              <div>
                 <Nav />
                 <Switch>
                 <Route path='/' exact component={HomePage} />
-                <Route path='/questions/:id' component={PollDetailPage} />
                 <Route path='/add' exact component={NewPoll} />
+                <Route path='/questions/:id' component={PollDetailPage} />
                 <Route path='/leaderboard' exact component={Leaderboard} />
                 <Route path='/404' component={PageNotFound} />
                 </Switch>
@@ -47,7 +48,7 @@ class App extends Component {
 
 function mapStateToProps ({ authedUser }){
   return {
-    loading: authedUser === null
+    authedUser
   }
 }
 

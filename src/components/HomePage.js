@@ -125,15 +125,6 @@ function mapStateToProps({ polls, authedUser, users }) {
   const userAnswers = Object.keys(authedUserInfo.answers)
   console.log('userAnswers: ', userAnswers)
 
-
-  // const pollsAnswered = Object.keys(polls).filter((pollId) =>
-  //   userAnswers.includes(pollId)
-  // ).reduce((obj, key) => {
-  //   return {
-  //     ...obj,
-  //     [key]: polls[key]
-  //   };
-  // }, {});
   const answeredFilterCB = (pollId) => userAnswers.includes(pollId) 
   const pollsAnswered = filterAnswers(polls, userAnswers, answeredFilterCB)
   // console.log('pollsAnswered: ', pollsAnswered)
