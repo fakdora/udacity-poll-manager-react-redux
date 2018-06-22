@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 
-import { formatPoll, formatDate } from '../utils/helpers'
+import { formatPoll } from '../utils/helpers'
 import { handleAnswerPoll } from '../actions/polls'
 
 class PollDetailPage extends Component {
@@ -12,7 +12,7 @@ class PollDetailPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { dispatch, author } = this.props
+    const { dispatch } = this.props
     
     const info = { 
       qid: this.props.poll.id, 
@@ -34,7 +34,7 @@ class PollDetailPage extends Component {
     const { poll, answered, author } = this.props
 
     const {
-      name, id, timestamp, optionOne, optionTwo, avatar
+      name, id, optionOne, optionTwo, avatar
     } = poll
 
     if (poll == null) {

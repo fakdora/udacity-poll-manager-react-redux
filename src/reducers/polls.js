@@ -30,7 +30,6 @@ export default function polls(state={}, action) {
         }
 
       case ADD_POLL:
-        const { poll } = action
         return {
           ...state,
           [action.poll.id]: action.poll,

@@ -20,12 +20,13 @@ class Login extends Component {
         <div className="book-shelf-changer">
         
           <select
+            value="login"
             onChange={this.handleLoginNameSelect}
           >
-          <option value="login" selected disabled>Please choose a name to login:</option>
+          <option value="login" disabled>Please choose a name to login:</option>
           {
-          Object.keys(users).map(((uid) => (
-              <option value={uid}>{users[uid].name}</option>
+            Object.keys(users).map(((uid) => (
+              <option key={uid} value={uid}>{users[uid].name}</option>
             )))
           }
           
