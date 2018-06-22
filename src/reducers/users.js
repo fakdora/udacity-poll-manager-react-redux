@@ -4,25 +4,25 @@ import {
 
 export default function users (state = {}, action) {
     switch(action.type) {
-        case RECEIVE_USERS:
-            return {
-                ...state,
-                ...action.users
-            }
+      
+      case RECEIVE_USERS:
+        return {
+            ...state,
+            ...action.users
+        }
+
       case ANSWER_POLL_FOR_USER:
-        console.log('here ANSWER_POLL_FOR_USER')
-        console.log('[action.qid]: action.answer: ', [action.qid]: action.answer)
-        console.log('action.qid: ', action.qid)
-            return {
-                ...state,
-                [action.authedUser]: {
-                  ...state[action.authedUser],
-                  answers: {
-                    ...state[action.authedUser].answers,
-                    [action.qid]: action.answer
-                  }
-                }
+        return {
+            ...state,
+            [action.authedUser]: {
+              ...state[action.authedUser],
+              answers: {
+                ...state[action.authedUser].answers,
+                [action.qid]: action.answer
               }
+            }
+          }
+
       case ADD_USER_NEW_POLL:
         return {
           ...state,

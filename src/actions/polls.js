@@ -35,7 +35,6 @@ export function handleAddPoll(optionOne, optionTwo) {
         dispatch(addUserNewPoll({ qid: poll.id, authedUser }))
       }) 
       .then(() => dispatch(hideLoading()))
-
   }
 }
 
@@ -51,10 +50,10 @@ function answerPoll({ qid, authedUser, answer}) {
 export function handleAnswerPoll(info) {
   return (dispatch, getState) => {
     dispatch(showLoading())
+
     const { authedUser } = getState()
-    
     info['authedUser'] = authedUser
-    console.log('----- ', info)
+    
     return (saveAnswer(info)
       .catch((e) => {
         console.warn('Error in handleAnswerPoll: ', e)

@@ -26,7 +26,6 @@ class NewPoll extends Component {
 
     dispatch(handleAddPoll(optionOne, optionTwo))
 
-    console.log('New poll: ', optionOne, optionTwo)
     this.setState(() => ({
       optionOne: "",
       optionTwo: "",

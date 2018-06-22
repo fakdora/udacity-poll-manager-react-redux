@@ -13,39 +13,39 @@ class Nav extends Component {
     dispatch(logoutUser())
   }
 
-    render() {
-        return (
-          <nav className='nav'>
-            <ul>
-                <li>
-                    <NavLink to='/' exact activeClassName='active'>
-                        Home
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to='/add' activeClassName='active'>
-                        Create New Poll
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to='/leaderboard' activeClassName='active'>
-                        Leaderboard
-                    </NavLink>
-                </li>
+  render() {
+    return (
+      <nav className='nav'>
+        <ul>
+          <li>
+              <NavLink to='/' exact activeClassName='active'>
+                  Home
+              </NavLink>
+          </li>
+          <li>
+              <NavLink to='/add' activeClassName='active'>
+                  Create New Poll
+              </NavLink>
+          </li>
+          <li>
+              <NavLink to='/leaderboard' activeClassName='active'>
+                  Leaderboard
+              </NavLink>
+          </li>
+        </ul>
 
-            </ul>
-
-            <ul className='user-info'>
-              <li>
-              Welcome {this.props.authedUser}
-              <button 
-                className=""
-                onClick={this.handleLogout}
-                > (Logout)</button>
-              </li>
-            </ul>
-        </nav>)
-    }
+        <ul className='user-info'>
+          <li>
+          Welcome {this.props.authedUser}
+          <button 
+            className=""
+            onClick={this.handleLogout}
+            > (Logout)</button>
+          </li>
+        </ul>
+      </nav>
+    )
+  }
 }
 
 function mapStateToProps({ authedUser }) {

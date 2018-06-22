@@ -124,10 +124,8 @@ function mapStateToProps({ authedUser, users, polls }, props) {
   const answered = Object.keys(users[authedUser].answers)
                     .includes(pollId)
 
-
   return {
     authedUser,
-    // authedUserDetail: users[authedUser],
     poll: formatPoll(poll, author, authedUser),
     author,
     answered,
