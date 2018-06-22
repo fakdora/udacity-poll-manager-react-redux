@@ -32,15 +32,16 @@ class PollDetailPage extends Component {
   }
 
   render() {
-    const { poll, answered, author } = this.props
-
-    const {
-      name, id, optionOne, optionTwo, avatar
-    } = poll
+    const { poll } = this.props
 
     if (poll == null) {
       return <Redirect to="/404" />
     }
+    const { answered, author } = this.props
+    const {
+      name, id, optionOne, optionTwo, avatar
+    } = poll
+
     const unansweredForm = (
       <div className="poll-answer-form">
         <form onSubmit={this.handleSubmit}>
@@ -122,9 +123,14 @@ function mapStateToProps({ authedUser, users, polls }, props) {
   const poll = polls[pollId]
   
   let author = null 
-  if (poll) {
-    author = users[poll['author']]
+  console.log('poll: ', poll)
+  if (!poll) {
+    return {
+      poll: null
+    }
   }
+
+  author = users[poll['author']]
 
   const answered = Object.keys(users[authedUser].answers)
                     .includes(pollId)

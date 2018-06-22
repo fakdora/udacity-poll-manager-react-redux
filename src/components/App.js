@@ -9,7 +9,7 @@ import Nav from './Nav'
 import NewPoll from './NewPoll'
 import PollDetailPage from './PollDetailPage'
 import Leaderboard from './LeaderBoard'
-import PageNotFound from './404'
+import PageNotFound from './Page404'
 import { handleInitialData } from '../actions/shared'
 // import { getInitialData } from '../utils/api'
 
@@ -31,11 +31,11 @@ class App extends Component {
               <div>
                 <Nav />
                 <Switch>
-                <Route path='/' exact component={HomePage} />
-                <Route path='/add' exact component={NewPoll} />
-                <Route path='/questions/:id' component={PollDetailPage} />
-                <Route path='/leaderboard' exact component={Leaderboard} />
-                <Route path='/404' component={PageNotFound} />
+                  <Route path='/add' exact component={NewPoll} />
+                  <Route path='/questions/:id' component={PollDetailPage} />
+                  <Route path='/leaderboard' exact component={Leaderboard} />
+                  <Route path='/404' component={PageNotFound} />
+                  <Route path='/' exact component={HomePage} />
                 </Switch>
               </div>
           }

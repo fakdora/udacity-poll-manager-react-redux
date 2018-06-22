@@ -20,17 +20,17 @@ class Nav extends Component {
       <nav className='nav'>
         <ul>
           <li>
-              <NavLink to='/' exact activeClassName='active'>
+              <NavLink to="/">
                   Home
               </NavLink>
           </li>
           <li>
-              <NavLink to='/add' activeClassName='active'>
+              <NavLink to="/add">
                   Create New Poll
               </NavLink>
           </li>
           <li>
-              <NavLink to='/leaderboard' activeClassName='active'>
+              <NavLink to="/leaderboard">
                   Leaderboard
               </NavLink>
           </li>
