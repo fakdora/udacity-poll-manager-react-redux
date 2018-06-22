@@ -2,19 +2,110 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 
+import { formatPoll, formatDate } from '../utils/helpers'
+
 class PollDetailPage extends Component {
+  state = {
+    vote: "optionOne"
+  }
 
-    render() {
-      const { poll } = this.props
-      console.log('this.props: ', this.props)
-      console.log('poll ', poll)
-      if (poll == null) {
-        return <Redirect to="/404" />
-      }
-      // const { id, avatar }
+  handleSubmit = (e) => {
+    e.preventDefault()
 
-      return <h3>PollDetailPage</h3>
+    alert(this.state.vote)
+  }
+
+  handleChange = (e) => {
+    
+    console.log('e', e)
+    const currentVote = e.target.value
+    console.log('currentVote: ', currentVote)
+    this.setState(() => ({
+      vote: currentVote
+    }))
+  }
+
+  render() {
+    const { poll, answered, author } = this.props
+
+    const {
+      name, id, timestamp, optionOne, optionTwo, avatar
+    } = poll
+
+    if (poll == null) {
+      return <Redirect to="/404" />
     }
+    const unansweredForm = (
+      <form onSubmit={this.handleSubmit}>
+        <input type="radio"
+          name="wouldyou"
+          value="optionOne" 
+          checked={this.state.vote === "optionOne"}
+          onChange={this.handleChange}
+           />
+        {optionOne.text}
+        <br />
+        or
+        <br />
+        <input type="radio"
+          name="wouldyou"
+          value="optionTwo" 
+          checked={this.state.vote === "optionTwo"}
+          onChange={this.handleChange}
+           />
+        {optionTwo.text}
+        <br />
+        <input type="submit" value="Submit" />
+      </form>
+    )
+
+    const chosenAnswer = author['answers'][id]
+    const optionOneVotes = optionOne.votes.length
+    const optionTwoVotes = optionTwo.votes.length
+    const totalNumVotes = optionOneVotes + optionTwoVotes
+
+    const result = (
+      <div>
+        <div className=
+        {(chosenAnswer === "optionOne") 
+          ? "chosen-ans btn"
+          : "btn"
+        }
+        >
+        {optionOne.text}: 
+          {optionOneVotes} votes 
+          { ((optionOneVotes/totalNumVotes) * 100).toFixed(1) }%
+        </div>
+        <div className=
+      {(chosenAnswer === "optionTwo") 
+          ? "chosen-ans btn"
+          : "btn"
+        }
+        >
+          {optionTwo.text}: 
+          {optionTwoVotes} votes 
+          { ((optionTwoVotes / totalNumVotes) * 100).toFixed(1) }%
+        </div >
+      </div>
+    )
+    // const { id, avatar }
+
+    return (
+      <div>
+      <h2>Would you rather? </h2>
+      <div>asked by: 
+      <img src={avatar} alt={`Avatar of ${name}`}
+            className='avatar' />
+      {name}
+      </div>
+        {(answered)
+          ? 
+          result
+          : unansweredForm}
+      </div>
+
+    )
+  }
 }
 
 // "8xf0y6ziyjabvozdd253nd": {
@@ -45,24 +136,28 @@ class PollDetailPage extends Component {
 // },
 
 function mapStateToProps({ authedUser, users, polls }, props) {
-  const id = props.match.params.id
-  const poll = polls[id]
-  const authedUserDetail = users[authedUser]
+  const pollId = props.match.params.id
+  const poll = polls[pollId]
   console.log('users: ', users)
+
   let author = null 
-  
   if (poll) {
     author = users[poll['author']]
   }
-  console.log('authedUserDetail: ', authedUserDetail)
   console.log('author:, ', author)
+
+  const answered = Object.keys(users[authedUser].answers)
+                    .includes(pollId)
+
+
   return {
     authedUser,
-    poll,
+    authedUserDetail: users[authedUser],
+    poll: formatPoll(poll, users[poll.author], authedUser),
     author,
-    authedUserDetail,
+    answered,
+    
   }
 }
-
 
 export default connect(mapStateToProps)(PollDetailPage)

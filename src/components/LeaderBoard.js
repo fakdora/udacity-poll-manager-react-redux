@@ -4,11 +4,40 @@ import { connect } from 'react-redux'
 class Leaderboard extends Component {
 
     render() {
+      const { users, sortedUserIDs } = this.props
+      console.log('this.props: ', this.props)
       console.log('users: ', users)
-      return <h3>Leaderboard</h3>
+
+
+      return (
+        <ul className='dashboard-list'>
+          {sortedUserIDs.map((id) => (
+            <li key={id}>
+            <div>
+              
+              <img 
+                src={users[id].avatarURL} 
+                alt={users[id].name} 
+                className="avatar"
+              />
+                <span>{users[id].name} </span>
+                Questiosn Asked
+                {users[id].questions.length}
+                
+                <span>Questions Answered</span>
+                {Object.keys(users[id].answers).length}
+
+                Total: 
+                {Object.keys(users[id].answers).length + 
+                users[id].questions.length}
+            </div>
+            </li>
+          ))}
+        </ul>
+
+      )
     }
 }
-
 
 // "8xf0y6ziyjabvozdd253nd": {
 //   id: '8xf0y6ziyjabvozdd253nd',
@@ -38,8 +67,21 @@ class Leaderboard extends Component {
 // },
 
 function mapStateToProps({ users }) {
+  console.log('here you go')
+  console.log(users['sarahedo'].answers)
+  console.log(Object.keys(users['sarahedo'].answers).length)
+  console.log(users['sarahedo'].questions.length)
+
   return {
-    users
+    
+    sortedUserIDs: Object.keys(users)
+      .sort((a, b) => {
+        const userACount = Object.keys(users[a].answers).length + users[a].questions.length
+        const userBCount = Object.keys(users[b].answers).length + users[b].questions.length
+        return userBCount - userACount
+      }),
+    users,
+
   }
 }
 

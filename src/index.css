@@ -116,3 +116,37 @@ li {
   height: 20px;
   margin: 15px 0;
 }
+
+#answered-btn {
+  width: 300px;
+  height: 40px;
+  border-radius: 0 0.3rem 0.3rem 0;
+}
+
+#unanswered-btn {
+  width: 300px;
+  height: 40px;
+  border-radius: .3rem 0 0 .3rem;
+}
+
+.unhighlight-btn {
+    color: #007bff;
+    background-color: transparent;
+    background-image: none;
+    border-color: #007bff;
+    font-size: 1.25rem;
+    
+}
+.highlight-btn {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    background-image: none;
+    border-color: #007bff;
+    font-size: 1.25rem;   
+}
+
+.chosen-ans {
+  color: #00cc00;
+  border: 2px solid #00cc00;
+}
