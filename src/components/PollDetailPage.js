@@ -84,9 +84,9 @@ class PollDetailPage extends Component {
           : "btn"
         }
         >
-        {optionOne.text}: 
-          {optionOneVotes} votes 
-          { ((optionOneVotes/totalNumVotes) * 100).toFixed(1) }%
+          <div className="result-text">{optionOne.text}: </div>
+          <div className="result-votes"> {optionOneVotes} votes </div>
+          <div className="result-precent"> { ((optionOneVotes/totalNumVotes) * 100).toFixed(1) }%</div>
         </div>
         <div className=
       {(chosenAnswer === "optionTwo") 
@@ -94,9 +94,9 @@ class PollDetailPage extends Component {
           : "btn"
         }
         >
-          {optionTwo.text}: 
-          {optionTwoVotes} votes 
-          { ((optionTwoVotes / totalNumVotes) * 100).toFixed(1) }%
+          <div className="result-text">{optionTwo.text}: </div>
+          <div className="result-votes">{optionTwoVotes} votes </div>
+          <div className="result-precent">{ ((optionTwoVotes / totalNumVotes) * 100).toFixed(1) }%</div>
         </div >
       </div>
     )

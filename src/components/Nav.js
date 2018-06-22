@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
-import { connect } from 'react-redux'
-
+import UserInfo from './UserInfo'
 import { logoutUser } from '../actions/authedUser'
 
 class Nav extends Component {
@@ -14,13 +13,11 @@ class Nav extends Component {
 
   render() {
 
-    const { users, authedUser } = this.props
-    const userDetail = users[authedUser]
     return (
       <nav className='nav'>
         <ul>
           <li>
-              <NavLink to="/">
+              <NavLink exact to="/">
                   Home
               </NavLink>
           </li>
@@ -36,25 +33,10 @@ class Nav extends Component {
           </li>
         </ul>
 
-        <ul className='user-info'>
-          <li>
-            Welcome {userDetail.name}
-          <button 
-              className="logout-btn"
-            onClick={this.handleLogout}
-            > Logout</button>
-          </li>
-        </ul>
+        <UserInfo />
       </nav>
     )
   }
 }
 
-function mapStateToProps({ authedUser, users }) {
-  return {
-    authedUser,
-    users
-  }
-}
-
-export default connect(mapStateToProps)(Nav)
+export default Nav

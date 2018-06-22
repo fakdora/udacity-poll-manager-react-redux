@@ -8,7 +8,6 @@ npm install
 ## To run:
 npm run
 
-
 After creation, your project should look like this:
 
 ```
@@ -34,6 +33,5 @@ my-app/
     index.js
     polls.js
     users.js
-
 ```
 
