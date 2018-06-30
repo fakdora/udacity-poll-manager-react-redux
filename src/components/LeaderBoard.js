@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 
-const Leaderboard = (props) => {
-
-    const { users, sortedUserIDs } = this.props
+const Leaderboard = ({ users, sortedUserIDs }) => {
 
     return (
       <ul className='dashboard-list'>
@@ -37,12 +35,9 @@ const Leaderboard = (props) => {
 }
 
 function mapStateToProps({ users }) {
-  console.log('here you go')
-  console.log(users['sarahedo'].answers)
-  console.log(Object.keys(users['sarahedo'].answers).length)
-  console.log(users['sarahedo'].questions.length)
 
   return {
+    // TODO change  make users to return sorted version, not here
     sortedUserIDs: Object.keys(users)
       .sort((a, b) => {
         const userACount = Object.keys(users[a].answers).length + users[a].questions.length

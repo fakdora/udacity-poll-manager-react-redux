@@ -8,7 +8,6 @@ import {
 
 export function getUsersData() {
     return Promise.all([_getUsers()]).then((users) => {
-        console.log(users[0])
         return users
     })
 }

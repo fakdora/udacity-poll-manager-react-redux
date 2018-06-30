@@ -4,18 +4,18 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 
+const defaultState = {
+  optionOne: "",
+  optionTwo: "",
+  toHome: false
+}
+
 class NewPoll extends Component {
-  state = {
-    optionOne: "",
-    optionTwo: "",
-    toHome: false
-  }
+  state = defaultState
 
   handleChange = (e) => {
-    let name = e.target.name
-    let value = e.target.value
-    this.setState(() => {
-      return {[name]: value}
+    this.setState({
+      [e.target.name]: e.target.value
     })
   }
 
@@ -28,8 +28,7 @@ class NewPoll extends Component {
     dispatch(handleAddPoll(optionOne, optionTwo))
 
     this.setState(() => ({
-      optionOne: "",
-      optionTwo: "",
+      ...defaultState,
       toHome: true
     }))
   }

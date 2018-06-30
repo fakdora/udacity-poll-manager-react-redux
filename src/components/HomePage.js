@@ -10,10 +10,9 @@ class HomePage extends Component {
   }
 
   handleChange = (e) => {
-    const name = e.target.name
-    const value = e.target.value
-    this.setState(() => {
-      return { [name]: value }
+    const { name, value } = e.target
+    this.setState({ 
+      [name]: value
     })
   }
 
