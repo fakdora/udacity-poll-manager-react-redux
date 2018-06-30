@@ -2,12 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 
-class Leaderboard extends Component {
+const Leaderboard = (props) => {
 
-  render() {
     const { users, sortedUserIDs } = this.props
-    console.log('this.props: ', this.props)
-    console.log('users: ', users)
 
     return (
       <ul className='dashboard-list'>
@@ -37,7 +34,6 @@ class Leaderboard extends Component {
         ))}
       </ul>
     )
-  }
 }
 
 function mapStateToProps({ users }) {
