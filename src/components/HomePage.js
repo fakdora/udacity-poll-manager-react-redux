@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+
 import Poll from './Poll'
+
 
 class HomePage extends Component {
   state = {

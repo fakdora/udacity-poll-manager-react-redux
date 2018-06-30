@@ -11,7 +11,7 @@ import PollDetailPage from './PollDetailPage'
 import Leaderboard from './LeaderBoard'
 import PageNotFound from './Page404'
 import { handleInitialData } from '../actions/shared'
-// import { getInitialData } from '../utils/api'
+
 
 class App extends Component {
   componentDidMount() {

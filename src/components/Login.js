@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { setAuthedUser } from '../actions/authedUser'
 
+
 class Login extends Component {
 
   handleLoginNameSelect = (e) => {
@@ -28,9 +29,8 @@ class Login extends Component {
               <option key={uid} value={uid}>{users[uid].name}</option>
             )))
           }
-          
-          </select>
-        </div>
+        </select>
+      </div>
     )
   }
 }

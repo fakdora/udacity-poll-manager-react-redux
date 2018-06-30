@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+
 import UserInfo from './UserInfo'
 import { logoutUser } from '../actions/authedUser'
+
 
 class Nav extends Component {
 

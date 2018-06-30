@@ -1,6 +1,9 @@
 import { 
-  RECEIVE_USERS, ANSWER_POLL_FOR_USER, ADD_USER_NEW_POLL 
+  RECEIVE_USERS, 
+  ANSWER_POLL_FOR_USER, 
+  ADD_USER_NEW_POLL 
 } from '../actions/users'
+
 
 export default function users (state = {}, action) {
     switch(action.type) {

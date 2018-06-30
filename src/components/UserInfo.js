@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { logoutUser } from '../actions/authedUser'
 
+
 class UserInfo extends Component {
 
   handleLogout = (e) => {

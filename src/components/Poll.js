@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { formatPoll, formatDate } from '../utils/helpers'
 import { Link } from 'react-router-dom'
 
+
 class Poll extends Component {
   render () {
     const { poll } = this.props

@@ -1,13 +1,12 @@
 import { 
-  _getUsers, _getQuestions, 
-  _saveQuestionAnswer, _saveQuestion 
+  _getUsers, 
+  _getQuestions, 
+  _saveQuestionAnswer, 
+  _saveQuestion 
 } from './_DATA'
 
+
 export function getUsersData() {
-    // return Promise.all(_getUsers)
-    // return _getUsers().then(([users]) => ({
-    //     users
-    // }))
     return Promise.all([_getUsers()]).then((users) => {
         console.log(users[0])
         return users

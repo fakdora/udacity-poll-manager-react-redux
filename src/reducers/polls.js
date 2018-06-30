@@ -1,4 +1,7 @@
-import { RECEIVE_POLLS, ANSWER_POLL, ADD_POLL } from '../actions/polls'
+import { 
+  RECEIVE_POLLS, ANSWER_POLL, ADD_POLL 
+} from '../actions/polls'
+
 
 export default function polls(state={}, action) {
     switch (action.type) {

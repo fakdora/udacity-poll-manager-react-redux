@@ -3,6 +3,7 @@ import { handleAddPoll } from '../actions/polls'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
+
 class NewPoll extends Component {
   state = {
     optionOne: "",

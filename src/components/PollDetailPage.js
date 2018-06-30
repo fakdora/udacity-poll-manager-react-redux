@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom'
 import { formatPoll } from '../utils/helpers'
 import { handleAnswerPoll } from '../actions/polls'
 
+
 class PollDetailPage extends Component {
+  
   state = {
     vote: "optionOne"
   }
