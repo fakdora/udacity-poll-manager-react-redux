@@ -125,7 +125,7 @@ function mapStateToProps({ authedUser, users, polls }, props) {
   const poll = polls[pollId]
   
   let author = null 
-  console.log('poll: ', poll)
+  
   if (!poll) {
     return {
       poll: null
